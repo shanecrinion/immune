@@ -16,28 +16,28 @@ This repository documents the analytical framework for studying immune dysregula
 
 #### Step 2: Differential Gene Expression (DGE) Analysis
 
-**Case-Control Comparison:** Identifying up/downregulated genes.
+- **Case-Control Comparison:** Identifying up/downregulated genes.
 
-**Statistical Significance Testing:** Adjusting for multiple comparisons (FDR correction).
+- **Statistical Significance Testing:** Adjusting for multiple comparisons (FDR correction).
 
 #### Step 3: Functional & Pathway Analysis
 
-**Gene Ontology (GO) & Pathway Enrichment:** Investigating biological implications.
+- **Gene Ontology (GO) & Pathway Enrichment:** Investigating biological implications.
 
-**Cell-Type Deconvolution:**  Estimating immune cell proportions within bulk RNA-seq samples.
+- **Cell-Type Deconvolution:**  Estimating immune cell proportions within bulk RNA-seq samples.
 
-**Visualization:** Generating volcano plots, heatmaps, and PCA plots.
+- **Visualization:** Generating volcano plots, heatmaps, and PCA plots.
 
 #### Required Software & Dependencies
 
-FastQC, MultiQC (QC)
+- FastQC, MultiQC (QC)
 
-STAR (Read alignment)
+- STAR (Read alignment)
 
-DESeq2, edgeR (Differential expression analysis)
+- DESeq2, edgeR (Differential expression analysis)
 
-CIBERSORT (Cellular deconvolution)
+- CIBERSORT (Cellular deconvolution)
 
-R & Bioconductor (Statistical analysis, visualization)
+- R & Bioconductor (Statistical analysis, visualization)
 
 
