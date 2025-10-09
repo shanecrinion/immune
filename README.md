@@ -16,7 +16,7 @@ What makes your project stand out? If your project has a lot of features, consid
 
 This repository documents the analytical workflow for an RNA-seq analysis I developed to investigate immune dysregulation using blood-based transcriptomic data from the Immune Response and Social Cognition Study (iRELATE). This project was completed in part fulfillment of my PhD thesis in Genomics Data Science titled 'Multiomic analyis of neuropsychiatric disorders'.
 
-[:speech_balloon: Poster from World Congress of Psychiatric Genetics (Singapore, 2024)](media/WCPG_2024.pdf)
+:speech_balloon: [Poster from World Congress of Psychiatric Genetics](media/WCPG_2024.pdf) — Singapore, 2024
 
 Workflow
 
