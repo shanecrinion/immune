@@ -20,7 +20,8 @@ This repository documents the analytical workflow for an RNA-seq analysis I deve
 </div>
 
 
-> **A.** In the Patient Assessment Protocol, blood samples and neuropsy- chiatric tests are taken before and after the Trier Social Stress Test (TSST). **B.** In Sample Preparation & Library Generation, total RNA is isolated, polyadenylated, and sequenced using complementary DNA (cDNA). In Bioinformatics Analysis, DEA is used to identify differentially expressed genes and explore the biological pathophysiology linked to SZ and or stress response.
+> **A.** In the Patient Assessment Protocol, blood samples and neuropsychiatric tests are taken before and after the Trier Social Stress Test (TSST). 
+**B.** In Sample Preparation & Library Generation, total RNA is isolated, polyadenylated, and sequenced using complementary DNA (cDNA). In Bioinformatics Analysis, DEA is used to identify differentially expressed genes and explore the biological pathophysiology linked to SZ and or stress response.
 
 -   :speech_balloon: [Poster from World Congress of Psychiatric Genetics](media/WCPG_2024.pdf) — Singapore, 2024
 
