@@ -14,11 +14,13 @@ What makes your project stand out? If your project has a lot of features, consid
 
 ### Project Description
 
-This repository documents the analytical workflow for an RNA-seq analysis I developed to investigate immune dysregulation using blood-based transcriptomic data from the Immune Response and Social Cognition Study (iRELATE). This project was completed in part fulfillment of my PhD thesis in Genomics Data Science titled 'Multiomic analyis of neuropsychiatric disorders'.
+This repository documents the analytical workflow for an RNA-seq analysis I developed to investigate immune dysregulation using blood-based transcriptomic data from the Immune Response and Social Cognition Study (iRELATE). This project was completed in part fulfillment of my PhD thesis titled '*Multiomic analysis of neuropsychiatric disorders*'. I completed a PhD in Genomics Data Science as a student of the SFI Centre for Research Training in Genomics Data Science.
 
-:speech_balloon: [Poster from World Congress of Psychiatric Genetics](media/WCPG_2024.pdf) — Singapore, 2024
+[Overview of experimental design and analytical workflow](media/experimental_design.png)
 
-Workflow
+-   :speech_balloon: [Poster from World Congress of Psychiatric Genetics](media/WCPG_2024.pdf) — Singapore, 2024
+
+A number of bioinformatics tools were used in this project. Scripts on analysis methods are available in their respective subdirectories for each analysis step however post-alignment analysis was mostly carried out in R using the tools DESeq2 for DEA, WGCNA for gene network construction and bMIND for cellular deconvolution.
 
 #### Step 1: RNA-Seq Data Processing
 
