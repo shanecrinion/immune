@@ -15,6 +15,7 @@ DEA identified 2,545 DEGs associated with SZ status and 770 DEGs associated with
 This repository documents the analytical workflow for an RNA-seq analysis I developed to investigate immune dysregulation using blood-based transcriptomic data from the Immune Response and Social Cognition Study (iRELATE). This project was completed in part fulfillment of my PhD thesis titled '*Multiomic analysis of neuropsychiatric disorders*'. I completed a PhD in Genomics Data Science as a student of the SFI Centre for Research Training in Genomics Data Science.
 
 
+#### Overview of experimental design and analytical workflow.
 <div style="text-align: center; width="100%">
   <img src="media/experimental_design.png" alt="Overview of experimental design and analytical workflow." style="display: block; margin: 0 auto;">
 </div>
@@ -23,7 +24,14 @@ This repository documents the analytical workflow for an RNA-seq analysis I deve
 > **A.** In the Patient Assessment Protocol, blood samples and neuropsychiatric tests are taken before and after the Trier Social Stress Test (TSST). 
 **B.** In Sample Preparation & Library Generation, total RNA is isolated, polyadenylated, and sequenced using complementary DNA (cDNA). In Bioinformatics Analysis, DEA is used to identify differentially expressed genes and explore the biological pathophysiology linked to SZ and or stress response.
 
+
+#### RNA-Seq analysis workflow included exploratory analysis such as differential expression, gene-set enrichment and cellular deconvolution.
+
 A number of bioinformatics tools were used in this project. Scripts on analysis methods are available in their respective subdirectories for each analysis step however post-alignment analysis was mostly carried out in R using the tools DESeq2 for DEA, WGCNA for gene network construction and bMIND for cellular deconvolution.
+
+<div style="text-align: center; width="100%">
+  <img src="media/rnaseq_workflow.png" alt="RNA-Seq analysis workflow." style="display: block; margin: 0 auto;">
+</div>
 
 #### Step 1: RNA-Seq Data Processing
 
