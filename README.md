@@ -16,7 +16,15 @@ What makes your project stand out? If your project has a lot of features, consid
 
 This repository documents the analytical workflow for an RNA-seq analysis I developed to investigate immune dysregulation using blood-based transcriptomic data from the Immune Response and Social Cognition Study (iRELATE). This project was completed in part fulfillment of my PhD thesis titled '*Multiomic analysis of neuropsychiatric disorders*'. I completed a PhD in Genomics Data Science as a student of the SFI Centre for Research Training in Genomics Data Science.
 
-![Overview of experimental design and analytical workflow](media/experimental_design.png "Overview of experimental design and analytical workflow")
+```         
+<div style="text-align: center;">
+  <img src="media/experimental_design.png" alt="Overview of experimental design and analytical workflow" style="display: block; margin: 0 auto;">
+</div>
+```
+
+```         
+> Overview of experimental design and analytical workflow for RNA-seq analysis of iRELATE samples. A. In the Patient Assessment Protocol, blood samples and neuropsy- chiatric tests are taken before and after the Trier Social Stress Test (TSST). B. In Sample Preparation & Library Generation, total RNA is isolated, polyadenylated, and sequenced using complementary DNA (cDNA). In Bioinformatics Analysis, DEA is used to identify differentially expressed genes and explore the biological pathophysiology linked to SZ and or stress response.
+```
 
 -   :speech_balloon: [Poster from World Congress of Psychiatric Genetics](media/WCPG_2024.pdf) — Singapore, 2024
 
