@@ -8,7 +8,7 @@ I received funding valued at €30,000 to generate RNA-sequencing data from the 
 
 DEA identified 2,545 DEGs associated with SZ status and 770 DEGs associated with stress response. DEGs for SZ indicated immune responses, while DEGs for stress-test response were biologically aligned. Gene network construction identified one network was enriched for positive symptoms of SZ. One constructed module for SZ was found to be significantly enriched for CNS demyelination processes. Cell type proportions reveal a significant enrichment for T-cells CD8 associated with SZ. This study provides evidence for the relationship between immune response and SZ, and identifies biologically relevant genes, pathways and gene networks. This project also demonstrates that blood-based RNA-seq studies can lead to significant findings on the role of immune function in psychiatry and reveal the underpinning of its pathophysiology.
 
-What makes your project stand out? If your project has a lot of features, consider adding a "Features" section and listing them here.
+:speech_balloon: [Poster from World Congress of Psychiatric Genetics](media/WCPG_2024.pdf) — Singapore, 2024
 
 ### Project Description
 
@@ -22,8 +22,6 @@ This repository documents the analytical workflow for an RNA-seq analysis I deve
 
 > **A.** In the Patient Assessment Protocol, blood samples and neuropsychiatric tests are taken before and after the Trier Social Stress Test (TSST). 
 **B.** In Sample Preparation & Library Generation, total RNA is isolated, polyadenylated, and sequenced using complementary DNA (cDNA). In Bioinformatics Analysis, DEA is used to identify differentially expressed genes and explore the biological pathophysiology linked to SZ and or stress response.
-
--   :speech_balloon: [Poster from World Congress of Psychiatric Genetics](media/WCPG_2024.pdf) — Singapore, 2024
 
 A number of bioinformatics tools were used in this project. Scripts on analysis methods are available in their respective subdirectories for each analysis step however post-alignment analysis was mostly carried out in R using the tools DESeq2 for DEA, WGCNA for gene network construction and bMIND for cellular deconvolution.
 
