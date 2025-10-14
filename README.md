@@ -54,8 +54,10 @@ BiocManager::install(c("DESeq2", "gage", "WGCNA"))
 
 ## Procedure
 
-Data Preparation
-:file_folder: seq_alignment
+* 1. Data Preparation
+
+[:file_folder:](seq_alignment) 
+
 
 2. Sequence alignment 
 3. Post-alignment QC
