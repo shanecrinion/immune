@@ -31,7 +31,26 @@ This repository documents the analytical workflow for an RNA-seq analysis I deve
   <img src="media/rnaseq_workflow.png" alt="RNA-Seq analysis workflow." style="display: block; margin: 0 auto;">
 </div>
 
-*A number of bioinformatics tools were used in this project. Scripts on analysis methods are available in their respective subdirectories for each analysis step however post-alignment analysis was mostly carried out in R using the tools DESeq2 for DEA, WGCNA for gene network construction and bMIND for cellular deconvolution.*
+*A number of bioinformatics tools were used in this project. Scripts on analysis methods are available in their respective subdirectories for each analysis step however post-alignment analysis were carried out primarily in R (using the tools DESeq2 for DEA, WGCNA for gene network construction and bMIND for cellular deconvolution).*
+
+## Installation
+
+Read quality was assessed before and after sequence alignment using FastQC (https://www.bioinformatics.babraham.ac.uk/projects/fastqc/) and MultiQC (https://seqera.io/multiqc/).
+
+Alignment was performed using HISAT2 and the pre-built human reference genome build 37 (https://daehwankimlab.github.io/hisat2/).
+
+Post-alignment QC was performed using samtools with FastQC and MultiQC.
+
+Read counting was measured using the Subread toolkit called featureCounts (https://subread.sourceforge.net/featureCounts.html).
+
+The R packages used for the RNA-seq analysis were DESeq2 (version 1.42.1), gage and WGCNA. These are installed in R by:
+
+```
+if (!require("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install(c("DESeq2", "gage", "WGCNA"))
+```
 
 
 #### Step 1: RNA-Seq Data Processing
