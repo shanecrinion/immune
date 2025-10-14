@@ -51,20 +51,18 @@ if (!require("BiocManager", quietly = TRUE))
 BiocManager::install(c("DESeq2", "gage", "WGCNA"))
 ```
 
-## Procedure | :file_folder: [seq_alignment/](seq_alignment)
+## Procedure 
 
-1.  Sequence Alignment
+1.  Sequence Alignment | :file_folder: [seq_alignment/](seq_alignment)
     1.  Transfer files from external supplier to local server (<code>1_download_remaining_files.sh</code>).
     2.  Trim adaptor sequences (<code>2_trim_all.sh</code>).
     3.  Perform paired-end sequence alignment to GRCh37 (<code>3_run_hisat2.sh</code>).
     4.  Post-alignment QC using samtools including sorting, converting to BAM, indexing, remove PCR duplicates and generate QC metrics (<code>4_postprocessing.sh</code>).
 
-:file_folder: - [seq_alignment](seq_alignment)
 
-1.  Data Preparation
-2.  Sequence alignment
-3.  Post-alignment QC
-4.  Read counting
+2. Differential expression analysis | :file_folder: [diff_express_analysis/](diff_express_analysis)
+    1. Merge and format phenotype and read count data for DESeq2 (1_dataDesign.R)
+
 
 #### Step 1: RNA-Seq Data Processing
 
