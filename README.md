@@ -16,20 +16,18 @@ This repository documents the analytical workflow for an RNA-seq analysis I deve
 
 #### Graphical Overview (experimental design and analytical workflow).
 
-```{=html}
 <div style="text-align: center; width="100%">
   <img src="media/experimental_design.png" alt="Overview of experimental design and analytical workflow." style="display: block; margin: 0 auto;">
 </div>
-```
+
 **A.** *In the Patient Assessment Protocol, blood samples and neuropsychiatric tests are taken before and after the Trier Social Stress Test (TSST).* **B.** *In Sample Preparation & Library Generation, total RNA is isolated, polyadenylated, and sequenced using complementary DNA (cDNA). In Bioinformatics Analysis, DEA is used to identify differentially expressed genes and explore the biological pathophysiology linked to SZ and or stress response.*
 
 #### RNA-Seq analysis workflow included exploratory analysis such as differential expression, gene-set enrichment and cellular deconvolution.
 
-```{=html}
 <div style="text-align: center; width="100%">
   <img src="media/rnaseq_workflow.png" alt="RNA-Seq analysis workflow." style="display: block; margin: 0 auto;">
 </div>
-```
+
 *A number of bioinformatics tools were used in this project. Scripts on analysis methods are available in their respective subdirectories for each analysis step however post-alignment analysis were carried out primarily in R (using the tools DESeq2 for DEA, WGCNA for gene network construction and bMIND for cellular deconvolution).*
 
 ## Installation
