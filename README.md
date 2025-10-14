@@ -15,7 +15,7 @@ DEA identified 2,545 DEGs associated with SZ status and 770 DEGs associated with
 This repository documents the analytical workflow for an RNA-seq analysis I developed to investigate immune dysregulation using blood-based transcriptomic data from the Immune Response and Social Cognition Study (iRELATE). This project was completed in part fulfillment of my PhD thesis titled '*Multiomic analysis of neuropsychiatric disorders*'. I completed a PhD in Genomics Data Science as a student of the SFI Centre for Research Training in Genomics Data Science.
 
 
-#### Overview of experimental design and analytical workflow.
+#### Graphical Overview (experimental design and analytical workflow).
 
 <div style="text-align: center; width="100%">
   <img src="media/experimental_design.png" alt="Overview of experimental design and analytical workflow." style="display: block; margin: 0 auto;">
@@ -35,13 +35,13 @@ This repository documents the analytical workflow for an RNA-seq analysis I deve
 
 ## Installation
 
-Read quality was assessed before and after sequence alignment using FastQC (https://www.bioinformatics.babraham.ac.uk/projects/fastqc/) and MultiQC (https://seqera.io/multiqc/).
+- Read quality was assessed before and after sequence alignment using FastQC (https://www.bioinformatics.babraham.ac.uk/projects/fastqc/) and MultiQC (https://seqera.io/multiqc/).
 
-Alignment was performed using HISAT2 and the pre-built human reference genome build 37 (https://daehwankimlab.github.io/hisat2/).
+- Alignment was performed using HISAT2 and the pre-built human reference genome build 37 (https://daehwankimlab.github.io/hisat2/).
 
-Post-alignment QC was performed using samtools with FastQC and MultiQC.
+- Post-alignment QC was performed using samtools with FastQC and MultiQC.
 
-Read counting was measured using the Subread toolkit called featureCounts (https://subread.sourceforge.net/featureCounts.html).
+- Read counting was measured using the Subread toolkit called featureCounts (https://subread.sourceforge.net/featureCounts.html).
 
 The R packages used for the RNA-seq analysis were DESeq2 (version 1.42.1), gage and WGCNA. These are installed in R by:
 
@@ -51,6 +51,15 @@ if (!require("BiocManager", quietly = TRUE))
 
 BiocManager::install(c("DESeq2", "gage", "WGCNA"))
 ```
+
+## Procedure
+
+Data Preparation
+:file_folder: seq_alignment
+
+2. Sequence alignment 
+3. Post-alignment QC
+4. Read counting 
 
 
 #### Step 1: RNA-Seq Data Processing
