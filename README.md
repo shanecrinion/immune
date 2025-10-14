@@ -14,63 +14,57 @@ DEA identified 2,545 DEGs associated with SZ status and 770 DEGs associated with
 
 This repository documents the analytical workflow for an RNA-seq analysis I developed to investigate immune dysregulation using blood-based transcriptomic data from the Immune Response and Social Cognition Study (iRELATE). This project was completed in part fulfillment of my PhD thesis titled '*Multiomic analysis of neuropsychiatric disorders*'. I completed a PhD in Genomics Data Science as a student of the SFI Centre for Research Training in Genomics Data Science.
 
-
 #### Graphical Overview (experimental design and analytical workflow).
 
+```{=html}
 <div style="text-align: center; width="100%">
   <img src="media/experimental_design.png" alt="Overview of experimental design and analytical workflow." style="display: block; margin: 0 auto;">
 </div>
-
-**A.** *In the Patient Assessment Protocol, blood samples and neuropsychiatric tests are taken before and after the Trier Social Stress Test (TSST).* 
-**B.** *In Sample Preparation & Library Generation, total RNA is isolated, polyadenylated, and sequenced using complementary DNA (cDNA). In Bioinformatics Analysis, DEA is used to identify differentially expressed genes and explore the biological pathophysiology linked to SZ and or stress response.*
-
+```
+**A.** *In the Patient Assessment Protocol, blood samples and neuropsychiatric tests are taken before and after the Trier Social Stress Test (TSST).* **B.** *In Sample Preparation & Library Generation, total RNA is isolated, polyadenylated, and sequenced using complementary DNA (cDNA). In Bioinformatics Analysis, DEA is used to identify differentially expressed genes and explore the biological pathophysiology linked to SZ and or stress response.*
 
 #### RNA-Seq analysis workflow included exploratory analysis such as differential expression, gene-set enrichment and cellular deconvolution.
 
+```{=html}
 <div style="text-align: center; width="100%">
   <img src="media/rnaseq_workflow.png" alt="RNA-Seq analysis workflow." style="display: block; margin: 0 auto;">
 </div>
-
+```
 *A number of bioinformatics tools were used in this project. Scripts on analysis methods are available in their respective subdirectories for each analysis step however post-alignment analysis were carried out primarily in R (using the tools DESeq2 for DEA, WGCNA for gene network construction and bMIND for cellular deconvolution).*
 
 ## Installation
 
-- Read quality was assessed before and after sequence alignment using FastQC (https://www.bioinformatics.babraham.ac.uk/projects/fastqc/) and MultiQC (https://seqera.io/multiqc/).
+-   Read quality was assessed before and after sequence alignment using FastQC (<https://www.bioinformatics.babraham.ac.uk/projects/fastqc/>) and MultiQC (<https://seqera.io/multiqc/>).
 
-- Alignment was performed using HISAT2 and the pre-built human reference genome build 37 (https://daehwankimlab.github.io/hisat2/).
+-   Alignment was performed using HISAT2 and the pre-built human reference genome build 37 (<https://daehwankimlab.github.io/hisat2/>).
 
-- Post-alignment QC was performed using samtools with FastQC and MultiQC.
+-   Post-alignment QC was performed using samtools with FastQC and MultiQC.
 
-- Read counting was measured using the Subread toolkit called featureCounts (https://subread.sourceforge.net/featureCounts.html).
+-   Read counting was measured using the Subread toolkit called featureCounts (<https://subread.sourceforge.net/featureCounts.html>).
 
 The R packages used for the RNA-seq analysis were DESeq2 (version 1.42.1), gage and WGCNA. These are installed in R by:
 
-```
+```         
 if (!require("BiocManager", quietly = TRUE))
     install.packages("BiocManager")
 
 BiocManager::install(c("DESeq2", "gage", "WGCNA"))
 ```
 
-## Procedure
+## Procedure | :file_folder: [seq_alignment/](seq_alignment)
 
-#### 1. 
+1.  Sequence Alignment
+    1.  Transfer files from external supplier to local server (<code>1_download_remaining_files.sh</code>).
+    2.  Trim adaptor sequences (<code>2_trim_all.sh</code>).
+    3.  Perform paired-end sequence alignment to GRCh37 (<code>3_run_hisat2.sh</code>).
+    4.  Post-alignment QC using samtools including sorting, converting to BAM, indexing, remove PCR duplicates and generate QC metrics (<code>4_postprocessing.sh</code>).
 
- 
-1. Sequence Alignment
-  _ Transfer files from external supplier to local server (<code>1_download_remaining_files.sh</code>).
-  _ Trim adaptor sequences (<code>2_trim_all.sh</code>).
-  _ Perform paired-end sequence alignment to GRCh37 (<code>3_run_hisat2.sh</code>). 
-  _ Post-alignment QC using samtools including sorting, converting to BAM, indexing, remove PCR duplicates and generate QC metrics (<code>4_postprocessing.sh</code>).
-  
-:file_folder: - [seq_alignment](seq_alignment) 
+:file_folder: - [seq_alignment](seq_alignment)
 
-
-1. Data Preparation
-2. Sequence alignment 
-3. Post-alignment QC
-4. Read counting 
-
+1.  Data Preparation
+2.  Sequence alignment
+3.  Post-alignment QC
+4.  Read counting
 
 #### Step 1: RNA-Seq Data Processing
 
