@@ -1,6 +1,6 @@
 Data QC plots
 ================
-2024-05-01
+2025-10-20
 
 Here we will generate a number of plots to investigate the count data.
 However, while we use raw counts and discrete distributions to explore
@@ -25,8 +25,19 @@ Import DESeq2 object:
 
 ``` r
 # ├── import using dds 
-dds <- readRDS('~/Documents/dev/dev2/remake/dds_countFiltered.rds')
+dds <- readRDS('dds_covarIncluded.rds')
+dds
 ```
+
+    ## class: DESeqDataSet 
+    ## dim: 63677 180 
+    ## metadata(1): version
+    ## assays(4): counts mu H cooks
+    ## rownames(63677): ENSG00000223972 ENSG00000227232 ... ENSG00000210195
+    ##   ENSG00000210196
+    ## rowData names(50): baseMean baseVar ... deviance maxCooks
+    ## colnames(180): PSR120 PSR089 ... PSR072 PSR057
+    ## colData names(11): SubjectID tobacco ... Plate sizeFactor
 
 ### 2. Extract Transformed Data
 
@@ -55,10 +66,10 @@ vsd <- vst(dds, blind=FALSE)
 assay(vsd)[1:3,1:3]
 ```
 
-    ##                   PSR001   PSR002   PSR003
-    ## ENSG00000223972 5.910472 5.901729 7.519761
-    ## ENSG00000227232 8.942500 8.362404 8.691538
-    ## ENSG00000238009 7.034055 6.992521 7.147954
+    ##                   PSR120   PSR089   PSR114
+    ## ENSG00000223972 6.850766 6.696634 6.205485
+    ## ENSG00000227232 8.936643 8.703745 8.870793
+    ## ENSG00000243485 3.667966 3.549275 3.167936
 
 **Variance stabilizing transformation** Above, we used a parametric fit
 for the dispersion. In this case, the closed-form expression for the
@@ -79,7 +90,7 @@ First we will generate normal transformed counts:
 ntd <- normTransform(dds)
 ```
 
-Explore the transformations to determine how they change dependant on
+Explore the transformations to determine how they change dependent on
 the normalisation
 
 ``` r
@@ -87,47 +98,35 @@ table(counts(dds) == assay(dds), useNA = 'ifany') # conforming that these are th
 ```
 
     ## 
-    ##    TRUE 
-    ## 4668672
-
-``` r
-assay(ntd)[1:6,1:6]
-```
-
-    ##                    PSR001    PSR002    PSR003    PSR004    PSR005    PSR006
-    ## ENSG00000223972  5.292510  5.279631  7.329937  6.599987  4.236220  5.342526
-    ## ENSG00000227232  8.873012  8.257952  8.608674  8.473254  8.199140  8.885264
-    ## ENSG00000238009  6.764975  6.715232  6.900112  7.076098  6.373016  7.762491
-    ## ENSG00000239945  4.000383  5.092282  4.111462  5.095372  3.523299  5.342526
-    ## ENSG00000233750  8.132498  7.840768  8.703944  8.623889  8.006460  9.556370
-    ## ENSG00000237683 11.061411 10.837118 11.540953 11.394200 11.019164 12.197914
+    ##     TRUE 
+    ## 11461860
 
 ``` r
 assay(ntd)[1:6,1:6]; counts(dds, normalized=T)[1:6,1:6]
 ```
 
-    ##                    PSR001    PSR002    PSR003    PSR004    PSR005    PSR006
-    ## ENSG00000223972  5.292510  5.279631  7.329937  6.599987  4.236220  5.342526
-    ## ENSG00000227232  8.873012  8.257952  8.608674  8.473254  8.199140  8.885264
-    ## ENSG00000238009  6.764975  6.715232  6.900112  7.076098  6.373016  7.762491
-    ## ENSG00000239945  4.000383  5.092282  4.111462  5.095372  3.523299  5.342526
-    ## ENSG00000233750  8.132498  7.840768  8.703944  8.623889  8.006460  9.556370
-    ## ENSG00000237683 11.061411 10.837118 11.540953 11.394200 11.019164 12.197914
+    ##                   PSR120    PSR089   PSR114    PSR149   PSR128   PSR085
+    ## ENSG00000223972 6.631483 6.4516979 5.855893 5.7327512 5.806163 5.954638
+    ## ENSG00000227232 8.886280 8.6444790 8.818059 8.8783571 8.602315 8.609485
+    ## ENSG00000243485 1.063856 0.7062895 0.000000 1.7382567 1.313383 0.833736
+    ## ENSG00000237613 0.000000 1.5334673 1.998407 0.8308821 0.000000 0.833736
+    ## ENSG00000268020 0.000000 0.0000000 0.000000 0.0000000 0.000000 0.000000
+    ## ENSG00000240361 0.000000 0.0000000 0.000000 0.0000000 0.000000 0.000000
 
-    ##                     PSR001     PSR002     PSR003     PSR004     PSR005
-    ## ENSG00000223972   38.19263   37.84431  159.89064   96.00500   17.84644
-    ## ENSG00000227232  467.85969  305.11976  389.36332  354.38882  292.89152
-    ## ENSG00000238009  107.75777  104.07185  118.43751  133.93290   81.88365
-    ## ENSG00000239945   15.00425   33.11377   16.28516   33.18691   10.49790
-    ## ENSG00000233750  279.62460  228.24850  416.01176  393.50197  256.14886
-    ## ENSG00000237683 2136.05910 1828.35326 2978.70344 2690.51043 2074.38585
-    ##                    PSR006
-    ## ENSG00000223972   39.5752
-    ## ENSG00000227232  471.8581
-    ## ENSG00000238009  216.1415
-    ## ENSG00000239945   39.5752
-    ## ENSG00000233750  751.9288
-    ## ENSG00000237683 4697.2718
+    ##                     PSR120      PSR089     PSR114      PSR149     PSR128
+    ## ENSG00000223972  98.145989  86.5295295  56.916106  52.1777631  54.953735
+    ## ENSG00000227232 472.191260 399.1727201 450.336210 469.5998675 387.646619
+    ## ENSG00000243485   1.090511   0.6316024   0.000000   2.3363177   1.485236
+    ## ENSG00000237613   0.000000   1.8948072   2.995585   0.7787726   0.000000
+    ## ENSG00000268020   0.000000   0.0000000   0.000000   0.0000000   0.000000
+    ## ENSG00000240361   0.000000   0.0000000   0.000000   0.0000000   0.000000
+    ##                      PSR085
+    ## ENSG00000223972  61.0189953
+    ## ENSG00000227232 389.5828163
+    ## ENSG00000243485   0.7822948
+    ## ENSG00000237613   0.7822948
+    ## ENSG00000268020   0.0000000
+    ## ENSG00000240361   0.0000000
 
 Now, we’ll compare normal to variance transformed data:
 
@@ -136,29 +135,7 @@ par(mfrow=c(1,3), mar=c(4,4,.1,.1))
 meanSdPlot(counts(dds))
 meanSdPlot(assay(ntd))
 meanSdPlot(assay(vsd))
-
-counts(dds)[1:6,1:3]
 ```
-
-    ##                 PSR001 PSR002 PSR003
-    ## ENSG00000223972     28     32    108
-    ## ENSG00000227232    343    258    263
-    ## ENSG00000238009     79     88     80
-    ## ENSG00000239945     11     28     11
-    ## ENSG00000233750    205    193    281
-    ## ENSG00000237683   1566   1546   2012
-
-``` r
-assay(dds)[1:6,1:3]
-```
-
-    ##                 PSR001 PSR002 PSR003
-    ## ENSG00000223972     28     32    108
-    ## ENSG00000227232    343    258    263
-    ## ENSG00000238009     79     88     80
-    ## ENSG00000239945     11     28     11
-    ## ENSG00000233750    205    193    281
-    ## ENSG00000237683   1566   1546   2012
 
 <img src="Data_QC_plots_files/figure-gfm/sd-transform-1.png" width="50%" /><img src="Data_QC_plots_files/figure-gfm/sd-transform-2.png" width="50%" /><img src="Data_QC_plots_files/figure-gfm/sd-transform-3.png" width="50%" />
 
@@ -221,9 +198,6 @@ pheatmap(assay(vsd)[select,row.names(df_ordered_tp_cond)], cluster_rows=F, show_
 ```
 
 <img src="Data_QC_plots_files/figure-gfm/heatmap-2-1.png" width="50%" /><img src="Data_QC_plots_files/figure-gfm/heatmap-2-2.png" width="50%" />
-Comparison to allowing clustering. Does clustering show patterns of
-distinction that contradicts the condition and time.point labelling
-above? If so, it may indicate that the samples are incorrectly labelled.
 
 **Heatmap of sample-to-sample distances**
 
@@ -247,7 +221,7 @@ hmap_sampledist <-
 ![](Data_QC_plots_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
 
 ``` r
-ggsave('heatmap_sampledist.png', hmap_sampledist, height=25, width=11, dpi=1200)
+#ggsave('heatmap_sampledist.png', hmap_sampledist, height=25, width=11, dpi=1200)
 ```
 
 Next, generate a PCA plot to identify groups within the samples
@@ -265,26 +239,10 @@ pc1
 ![](Data_QC_plots_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
 
 ``` r
-ggsave('pca_sex.png', dpi=1200)
+#ggsave('pca_sex.png', dpi=1200)
 ```
-
-    ## Saving 7 x 5 in image
 
 Correct for sex effects:
-
-``` r
-vsd
-```
-
-    ## class: DESeqTransform 
-    ## dim: 24316 192 
-    ## metadata(1): version
-    ## assays(1): ''
-    ## rownames(24316): ENSG00000223972 ENSG00000227232 ... ENSG00000210195
-    ##   ENSG00000210196
-    ## rowData names(35): baseMean baseVar ... replace dispFit
-    ## colnames(192): PSR001 PSR002 ... PSR198 PSR199
-    ## colData names(9): sample time.point ... sizeFactor replaceable
 
 ``` r
 # Create a sex corrected set
