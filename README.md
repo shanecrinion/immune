@@ -59,8 +59,13 @@ BiocManager::install(c("DESeq2", "gage", "WGCNA"))
 
 
 2. Differential expression analysis | :file_folder: [diff_express_analysis/](diff_express_analysis)
-    1. Merge and format phenotype and read count data for DESeq2 (1_dataDesign.R)
+    1. Format and merge phenotype and read count data for DESeq2, generate data object (<code>1_import_makeDDS.R</code>)
+    2. QC plots to investigate the distribution and profile of read counts. (<code>Data_QC_plots.md</code>)
+    3. Observe results of DEA for cases vs controls, create volcano plots and extract extract top genes (<code>2_cases_vs_controls/DEA_CasesVsControls.md</code>)
+    4. Observe results of DEA for pre (T1) and post-stress test (T3), create volcano plots and extract extract top genes (<code>3_tp1_vs_tp3/DEA_T1vsT3.md</code>)
 
+3. Cellular Deconvolution
+    1. /Users/shanecrinion/Documents/dev/dev2/remake/2_DEA.R 
 
 #### Step 1: RNA-Seq Data Processing
 

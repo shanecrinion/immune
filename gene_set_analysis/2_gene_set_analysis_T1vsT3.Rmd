@@ -1,0 +1,117 @@
+---
+title: "Gene Set Analysis (Timepoint 1 vs Timepoint 3)"
+author: "Shane Crinion"
+date: "`r Sys.Date()`"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### 1. Import Data
+
+Import DESeq2 object:
+
+```{r,  message=F}
+library(DESeq2)
+# ├── import using dds 
+dds <- readRDS('~/Documents/dev/dds_allParticipants_covar_included.rds')
+
+# import gene names
+gene_info <- readRDS('~/Documents/dev/dev2/remake/geneIDs.rds')
+```
+
+
+Extract the results table for the Patient vs Control analysis:
+
+```{r}
+results <- results(dds, alpha=0.05, test='Wald', name='time.point_T3_vs_T1')
+results$ensembl <- row.names(results)
+```
+
+
+We have to extract the Ensembl IDs and convert them to Entrez IDs, gene symbol and descriptions. We do this using biomaRt.
+
+Load the libraries and Ensembl dataset.
+
+```{r}
+library(biomaRt)
+library("AnnotationDbi")
+library("org.Hs.eg.db")
+# Select the Ensembl dataset for human
+mart <- useMart("ensembl", dataset = "hsapiens_gene_ensembl")
+```
+
+We then extract the mapping information using the Ensembl mart.
+
+```{r}
+# Retrieve the mapping between Ensembl IDs, Entrez IDs, gene symbols, and gene names
+mapping <- getBM(
+    attributes = c("ensembl_gene_id", "entrezgene_id", "hgnc_symbol", "description"),
+    filters = "ensembl_gene_id",
+    values = row.names(results),
+    mart = mart)
+```
+
+Merge this information to the results.
+
+```{r}
+results <- merge(as.data.frame(results), mapping, by.x='ensembl', by.y='ensembl_gene_id', all.x=T)
+```
+
+### 2. KEGG and Gene Ontology pathway analysis (gene set test with GAGE and pathway visualisation with pathview)
+
+We performed pathway analysis using the gage (Generally Applicable Gene-set Enrichment for Pathway Analysis) package. This will identify the significantly perturbed KEGG pathways. We used the pathview function to visualise the gene expression pertubations in significant KEGG pathways. GSEA uses the expression profiles of the genes. 
+
+Import the libraries and lists for KEGG pathways
+
+```{r, message=F}
+# load libraries containing KEGG pathways
+library(gage)
+library(gageData)
+
+# Import lists of genes in each KEGG pathway
+data(kegg.sets.hs) 
+# Import index of signalling and metabolic pathways
+data(sigmet.idx.hs) 
+# Import list of genes in Gene Ontology lists
+data(go.subs.hs)
+
+# Filter gene sets to only signalling and metabolic pathways
+kegg.sets.hs = kegg.sets.hs[sigmet.idx.hs]
+```
+
+Extract fold changes for all genes.
+
+```{r}
+foldchanges = results$log2FoldChange
+names(foldchanges) = row.names(results)
+```
+
+Perform GAGE (Generally Applicable Gene-set Enrichment) to infer gene sets that are significantly perturbed relative to all genes considered.
+
+```{r}
+# Get the results
+KEGGres = gage(foldchanges, gsets=kegg.sets.hs, same.dir=TRUE)
+GOres = gage(foldchanges, gsets=go.subs.hs, same.dir=TRUE)
+```
+
+Extract the upregulated and down regulated pathways 
+
+```{r}
+KEGGres.upregulated <- as.data.frame(KEGGres$greater)
+KEGGres.downregulated <- as.data.frame(KEGGres$less)
+```  
+
+View the results
+
+```{r}
+head(KEGGres.upregulated[order(-KEGGres.upregulated$q.val),])
+```
+
+```{r}
+head(KEGGres.downregulated[order(-KEGGres.downregulated$q.val),])
+```
+
+These analyses detected no significant pathways associated with time-point differences.
