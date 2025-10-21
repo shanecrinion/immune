@@ -40,7 +40,7 @@ This repository documents the analytical workflow for an RNA-seq analysis I deve
 
 -   Read counting was measured using the Subread toolkit called featureCounts (<https://subread.sourceforge.net/featureCounts.html>).
 
-The R packages used for the RNA-seq analysis were DESeq2 (version 1.42.1), gage and WGCNA. These are installed in R by:
+The main R packages used for the RNA-seq analysis were DESeq2 (version 1.42.1), gage and WGCNA. These, and many other packages used in the individual analyses, are installed in R using BiocManager:
 
 ```         
 if (!require("BiocManager", quietly = TRUE))
@@ -69,24 +69,15 @@ BiocManager::install(c("DESeq2", "gage", "WGCNA"))
     2. Same as above for Timepoint 1 vs Timepoint 3 (<code>2_gene_set_analysis_T1vsT3.md</code>).
     
 4. Weighted Gene Co-expression Network Analysis (WGCNA) |  :file_folder: [wgcna/](wgcna)
-    1. Script to construct networks, investigate association with case/control status, stress test time-point and interaction term between both. The significant modules are then extracted and subsets of the data are created to assess for association with 1) clinical measurements 2) psychiatric measurments (cases only) (<code>wgcna.md</code>).
+    1. Construction of gene networks to identify latent factors based on gene expression profiles. Script to construct networks, investigate association with case/control status, stress test time-point and interaction term between both. The significant modules are then extracted and subsets of the data are created to assess for association with 1) clinical measurements 2) psychiatric measurments (cases only) (<code>wgcna.md</code>).
 
-#### Step 3: Functional & Pathway Analysis
+5. Cellular deconvolution | :file_folder: [cellular_deconv/](cellular_deconv)
+  1. Cellular decomposition was performed to predict cell-type proportions on the blood-based data using a single-cell immune cell reference. This script imports the bulk and reference data to calculate cell type proportions using MIND, plot fractions by sample and case/control status and statistical tests to identify significant differences between cases and controls <code>deconv.md</code>. 
+  
 
--   **Gene Ontology (GO) & Pathway Enrichment:** Investigating biological implications.
+## Acknowledgements 
 
--   **Cell-Type Deconvolution:** Estimating immune cell proportions within bulk RNA-seq samples.
+This work has emanated from research supported by a research grant from Science
+Foundation Ireland (SFI) under Grant number 18/CRT/6214 and is co-funded under the European Regional Development Fund and by Genuity Science.
 
--   **Visualization:** Generating volcano plots, heatmaps, and PCA plots.
 
-#### Required Software & Dependencies
-
--   FastQC, MultiQC (QC)
-
--   HISAT2 (Read alignment)
-
--   DESeq2, edgeR (Differential expression analysis)
-
--   CIBERSORT (Cellular deconvolution)
-
--   R & Bioconductor (Statistical analysis, visualization)
