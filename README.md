@@ -72,7 +72,7 @@ BiocManager::install(c("DESeq2", "gage", "WGCNA"))
     1. Construction of gene networks to identify latent factors based on gene expression profiles. Script to construct networks, investigate association with case/control status, stress test time-point and interaction term between both. The significant modules are then extracted and subsets of the data are created to assess for association with 1) clinical measurements 2) psychiatric measurments (cases only) (<code>wgcna.md</code>).
 
 5. Cellular deconvolution | :file_folder: [cellular_deconv/](cellular_deconv)
-  1. Cellular decomposition was performed to predict cell-type proportions on the blood-based data using a single-cell immune cell reference. This script imports the bulk and reference data to calculate cell type proportions using MIND, plot fractions by sample and case/control status and statistical tests to identify significant differences between cases and controls <code>deconv.md</code>. 
+    1. This was performed to predict cell-type proportions on the blood-based data using a single-cell immune cell reference. This script imports the bulk and reference data to calculate cell type proportions using MIND, plot fractions by sample and case/control status and statistical tests to identify significant differences between cases and controls <code>deconv.md</code>. 
   
 
 ## Acknowledgements 
