@@ -69,7 +69,7 @@ BiocManager::install(c("DESeq2", "gage", "WGCNA"))
     2. Same as above for Timepoint 1 vs Timepoint 3 (<code>2_gene_set_analysis_T1vsT3.md</code>).
     
 4. Weighted Gene Co-expression Network Analysis (WGCNA) |  :file_folder: [wgcna/](wgcna)
-  1. Script to construct networks, investigate association with case/control status, stress test time-point and interaction term between both. The significant modules are then extracted and subsets of the data are created to assess for association with 1) clinical measurements 2) psychiatric measurments (cases only) (<code>wgcna.md</code>).
+    1. Script to construct networks, investigate association with case/control status, stress test time-point and interaction term between both. The significant modules are then extracted and subsets of the data are created to assess for association with 1) clinical measurements 2) psychiatric measurments (cases only) (<code>wgcna.md</code>).
 
 #### Step 3: Functional & Pathway Analysis
 
