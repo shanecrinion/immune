@@ -64,10 +64,12 @@ BiocManager::install(c("DESeq2", "gage", "WGCNA"))
     3. Observe results of DEA for cases vs controls, create volcano plots and extract extract top genes (<code>2_cases_vs_controls/DEA_CasesVsControls.md</code>)
     4. Observe results of DEA for pre- (T1) and post-stress test (T3), create volcano plots and extract extract top genes (<code>3_tp1_vs_tp3/DEA_T1vsT3.md</code>)
 
-3. Gene Set Analysis | :file_folder: [gene_set_analysis/](gene_set_analysis)]
+3. Gene set analysis | :file_folder: [gene_set_analysis/](gene_set_analysis)
     1. GSA including library loading, Entrez-Ensembl ID mapping, pathway analysis using gage to investigate up and down regulated pathways in cases vs controls (<code>1_gene_set_analysis_cases_vs_controls.md</code>)
     2. Same as above for Timepoint 1 vs Timepoint 3 (<code>2_gene_set_analysis_T1vsT3.md</code>).
     
+4. Weighted Gene Co-expression Network Analysis (WGCNA) |  :file_folder: [wgcna/](wgcna)
+  1. Script to construct networks, investigate association with case/control status, stress test time-point and interaction term between both. The significant modules are then extracted and subsets of the data are created to assess for association with 1) clinical measurements 2) psychiatric measurments (cases only) (<code>wgcna.md</code>).
 
 #### Step 3: Functional & Pathway Analysis
 
