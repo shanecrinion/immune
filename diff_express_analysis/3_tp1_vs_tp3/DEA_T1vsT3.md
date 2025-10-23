@@ -23,7 +23,7 @@ Import gene names for labelling:
 
 ``` r
 # import gene names
-gene_info <- readRDS('~/Documents/dev/dev2/remake/geneIDs.rds')
+gene_info <- readRDS('geneIDs.rds')
 ```
 
 Extract the results table for the T1 vs T3 analysis:
