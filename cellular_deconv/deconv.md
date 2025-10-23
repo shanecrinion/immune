@@ -32,9 +32,8 @@ library(ggplot2)
 Import bulk count data and sample meta-data for case-control status.
 
 ``` r
-setwd('~/Documents/dev/deconvolution/')
-bulk <- read.delim('~/Documents/dev/dev2/counts.27-07-2024.txt')
-meta <- read.csv('~/Documents/dev/dev2/rnaseq_metadata.csv', row.names = 1)
+bulk <- read.delim('counts.27-07-2024.txt')
+meta <- read.csv('rnaseq_metadata.csv', row.names = 1)
 ```
 
 Prep and format count data for bMIND.
@@ -86,7 +85,7 @@ immune cells.
 
 ``` r
 # import immune signature file
-signature = read.delim('~/Documents/dev/deconvolution/LM22.txt', row.names = 1)
+signature = read.delim('LM22.txt', row.names = 1)
 ```
 
 Convert the immune cell expression reference to log-transformed values.
