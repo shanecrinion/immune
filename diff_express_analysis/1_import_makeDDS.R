@@ -3,8 +3,7 @@
 # Shane Crinion / shanecrinion@gmail.com / s.crinion1@universityofgalway.ie
 # 19-06-2024
 
-# 1. Read in the count data
-setwd('~/Documents/dev/dev2/')
+# 1. Read in the count data)
 
 # Read in the counts generated using FeatureCounts
 counts <- read.table('counts.Homo_sapiens.GRCh37.75.txt', header=T)
@@ -25,18 +24,18 @@ row.names(expression) <- ensembl_ids
 
 #library("readxl")
 # subjectID, age, sex, tobacco usage and bmi
-pheno.1 <- read.csv('~/Downloads/iRELATE_full_wf - iRELATE_full_wf.csv')
+pheno.1 <- read.csv('iRELATE_full_wf - iRELATE_full_wf.csv')
 pheno.1 <- pheno.1[,c('SubjectID', 'tobacco', 'age', 'sex', 'bmi')]
 
 # timepoint and condition case/control (from the sample submission file)
-pheno.2 <- read.csv('~/Documents/dev/dev2/iRELATE mRNA and cDNA T3.xlsx - NGS sample submission format.csv')
+pheno.2 <- read.csv('iRELATE mRNA and cDNA T3.xlsx - NGS sample submission format.csv')
 pheno.2 <- pheno.2[c('sample', 'time.point', 'X', 'ID', 'X.1')]
 names(pheno.2) <- c('SubjectID', 'time.point', 'Condition', 'ID', 'Plate')
 colnames(pheno.2)[3] <- 'Condition'
 colnames(pheno.2)[5] <- 'Plate'
 
 # olenzapine dosage 
-pheno.3 <- read.csv('~/Documents/dev/dev2/olz_patient.csv')
+pheno.3 <- read.csv('olz_patient.csv')
 
 # merge the simpler datasets first
 pheno = merge(pheno.1, pheno.3, by='SubjectID', all.x=T)
