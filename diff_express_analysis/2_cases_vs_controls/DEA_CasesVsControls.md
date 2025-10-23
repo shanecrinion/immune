@@ -23,7 +23,7 @@ Import gene names for labelling:
 
 ``` r
 # import gene names
-gene_info <- readRDS('~/Documents/dev/dev2/remake/geneIDs.rds')
+gene_info <- readRDS('geneIDs.rds')
 ```
 
 Extract the results table for the Patient vs Control analysis:
@@ -41,7 +41,7 @@ results_w_gene_name <- merge(as.data.frame(results),
                              by.x='ensembl',
                              by.y='ensembl_gene_id',
                              all.x=T, all.y=F)
-#write.csv(subset(results_w_gene_name, padj<0.05), '~/Downloads/caseControl_padj05.csv')
+#write.csv(subset(results_w_gene_name, padj<0.05), 'caseControl_padj05.csv')
 ```
 
 ### 2. Visualisations
