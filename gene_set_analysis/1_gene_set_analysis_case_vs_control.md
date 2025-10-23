@@ -10,10 +10,10 @@ Import DESeq2 object:
 ``` r
 library(DESeq2)
 # ├── import using dds 
-dds <- readRDS('~/Documents/dev/dds_allParticipants_covar_included.rds')
+dds <- readRDS('dds_allParticipants_covar_included.rds')
 
 # import gene names
-gene_info <- readRDS('~/Documents/dev/dev2/remake/geneIDs.rds')
+gene_info <- readRDS('geneIDs.rds')
 ```
 
 Extract the results table for the Patient vs Control analysis:
